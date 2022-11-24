@@ -1,4 +1,4 @@
-areayearsClaimsFree<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -19,50 +19,100 @@ areayearsClaimsFree<!DOCTYPE html>
             <input id="name" type="text" value=""><br>
 
             <label for="email">Email:</label><br>
-            <input id="email" type="text" value=""><br><br>
+            <input id="email" type="text" value=""><br>
 
-            <label for="applicant">applicant:</label><br><br>
-            <input type="radio" name="applicant" value="owner" checked><span>Owner</span><br>
-            <input type="radio" name="applicant" value="tenant"><span>Tenant</span><br>
+            <label for="applicant">Are you an Owner Or Tenat:</label><br>
+            <!-- 100 for owner 50 for tenant. -->
+            <input type="radio" name="applicant" value="100" checked><span>Owner</span><br>
+            <input type="radio" name="applicant" value="50"><span>Tenant</span><br>
         </fieldset>
 
         <fieldset>
           <legend>Property Details:</legend>
+
             <label for="bedrooms">Bedrooms:</label><br>
+            <!-- 10 per room -->
             <input id="bedrooms" type="text" value=""><br>
 
-            <label for="area">Area:</label><br><br>
-            <input type="radio" name="area" value="other" checked><span>Outside of Dublin</span><br>
-            <input type="radio" name="area" value="dublin" ><span>In Dublin</span><br>
+            <label for="area">Area:</label><br>
+            <!-- Dublin 100, outside 50. (same as tenant or owner) -->
+            <input type="radio" name="area" value="50" checked><span>Outside of Dublin</span><br>
+            <input type="radio" name="area" value="100" ><span>In Dublin</span><br>
 
 
-            <label for="proptype">Property Type:</label>
-            <select name="proptype" id="proptype">
-              <option value="bungalow">Bungalow</option>
-              <option value="country">Country House</option>
-              <option value="detached">Detached</option>
-              <option value="semi">Semi-Detached</option>
-              <option value="terrace">Terraced</option>
-              <option value="flat">Flat / Appartment</option>
-            </select>
+            <label for="prop_type">Property Type:</label><br>
+            <!-- B. 75, C.H. 100, De. 50, semi DE 40, Ter 30, Flat 20  -->
+            <select name="prop_type" id="prop_type">
+              <option value="75">Bungalow</option>
+              <option value="100">Country House</option>
+              <option value="50">Detached</option>
+              <option value="40">Semi-Detached</option>
+              <option value="30">Terraced</option>
+              <option value="20">Flat / Appartment</option>
+            </select><br>
 
-            <label for="yearbuilt">Year Built:</label><br>
-            <input id="yearbuilt" type="text" value=""><br>
-
-
-
+            <label for="year_built">Year Built:</label><br>
+            <!-- 10 for every year old, need to get system date? -->
+            <input id="year_built" type="text" value=""><br>
 
         </fieldset>
 
+        <fieldset>
+          <legend>Cover Details</legend>
+            <label for="cover_type">Cover Type:</label><br>
+            <!-- Owner 50 , hol 60, rent 70 -->
+            <select name="covertype" id="covertype">
+              <option value="50">Owner Occupied</option>
+              <option value="60">Holiday</option>
+              <option value="70">Rental</option>
+            </select><br>
 
-        <label for="yearsClaimsFree">Years Claims Free:</label><br>
-        <input id="yearsClaimsFree" type="text" value=""><br>
+
+            <label for="contents_cover">Conents Cover:</label><br>
+            <!-- 10 for every 5000.  -->
+            <select name="contents_cover" id="contents_cover">
+              <option value="10">€5,000</option>
+              <option value="20">€10,000</option>
+              <option value="30">€15,000</option>
+              <option value="40">€20,000</option>
+              <option value="50">€25,000</option>
+              <option value="60">€30,000</option>
+              <option value="70">€35,000</option>
+              <option value="80">€40,000</option>
+            </select><br>
+
+            <label for="contents_cover">Building Cover:</label><br>
+            <!-- 20 for every 100,000.  -->
+            <select name="contents_cover" id="contents_cover">
+              <option value="20">€100,000</option>
+              <option value="40">€200,000</option>
+              <option value="60">€300,000</option>
+              <option value="80">€400,000</option>
+              <option value="100">€500,000</option>
+              <option value="120">€600,000</option>
+              <option value="140">€700,000</option>
+              <option value="160">€800,000</option>
+            </select><br>
+
+            <label for="yearsClaimsFree">Years Claims Free:</label><br>
+            <input id="yearsClaimsFree" type="text" value=""><br>
+        </fieldset>
+
+        <div class="buttons">
+          <input type="button" name="" value="Get a Quote!">
+          <input type="button" name="" value="reset">
+        </div>
+
 
         <label for="runningTotal">Running Total:</label><br>
         <input id="runningTotal" type="text" value=""><br>
 
       </form>
     </div>
+
+    <script>
+
+    </script>
 
 
   </body>
