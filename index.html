@@ -61,7 +61,7 @@
           <legend>Cover Details</legend>
             <label for="cover_type">Cover Type:</label><br>
             <!-- Owner 50 , hol 60, rent 70 -->
-            <select name="covertype" id="covertype">
+            <select name="cover_type" id="cover_type">
               <option value="50">Owner Occupied</option>
               <option value="60">Holiday</option>
               <option value="70">Rental</option>
@@ -81,9 +81,9 @@
               <option value="80">€40,000</option>
             </select><br>
 
-            <label for="contents_cover">Building Cover:</label><br>
+            <label for="building_cover">Building Cover:</label><br>
             <!-- 20 for every 100,000.  -->
-            <select name="contents_cover" id="contents_cover">
+            <select name="building_cover" id="building_cover">
               <option value="20">€100,000</option>
               <option value="40">€200,000</option>
               <option value="60">€300,000</option>
@@ -94,18 +94,19 @@
               <option value="160">€800,000</option>
             </select><br>
 
-            <label for="yearsClaimsFree">Years Claims Free:</label><br>
-            <input id="yearsClaimsFree" type="text" value=""><br>
+            <label for="years_claims_free">Years Claims Free:</label><br>
+            <!--  10 euro off for every year -->
+            <input id="years_claims_free" type="text" value=""><br>
         </fieldset>
 
         <div class="buttons">
-          <input type="button" name="" value="Get a Quote!">
-          <input type="button" name="" value="reset">
+          <input id="quote" type="button" name="" value="Get a Quote!">
+          <input id="reset" type="reset" name="" value="reset">
         </div>
 
 
-        <label for="runningTotal">Running Total:</label><br>
-        <input id="runningTotal" type="text" value=""><br>
+        <label for="running_total">Running Total:</label><br>
+        <input id="running_total" type="text" value=""><br>
 
         <script src="houseInsurance.js"></script>
 
