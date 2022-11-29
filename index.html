@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Home Insurance Quotation</title>
-
+    <link rel="stylesheet" href="insurance.css">
   </head>
   <body>
     <div class="">
@@ -94,7 +94,8 @@
               <option value="160">€800,000</option>
             </select><br>
 
-            <label for="years_claims_free">Years Claims Free:</label><br>
+
+            <label for="years_claims_free">Years Claims Free: <img class="question" id="years_free_help" value="" src="question.png" alt="Values Entered must be positive whole Number"></label><br>
             <!--  10 euro off for every year -->
             <input id="years_claims_free" type="text" value=""><br>
         </fieldset>
@@ -104,13 +105,21 @@
           <input id="reset" type="reset" name="" value="reset">
         </div>
 
-
-        <label for="running_total">Running Total:</label><br>
-        <input id="running_total" type="text" value=""><br>
-
-        <script src="houseInsurance.js"></script>
+        <div class="totals">
+          <label for="running_total">Running Total:</label><br>
+          <input id="running_total" type="text" value=""><br>
+        </div>
 
       </form>
+
+      <div id="helper_container">
+        <div id="helper" class="helper">
+            Hello!!!!!! (Test)
+        </div>
+      </div>
+
+
+      <script src="houseInsurance.js"></script>
     </div>
   </body>
 </html>

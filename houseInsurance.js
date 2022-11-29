@@ -12,13 +12,20 @@ let contentCover = document.getElementById('contents_cover');
 let buildCover = document.getElementById('building_cover');
 let claimsFree = document.getElementById('years_claims_free');
 let runningTotal = document.getElementById('running_total');
+// this was fund on the mozila definition for Date variables.
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+let currDate = new Date(Date.now());
+
+let helper = document.getElementById('helper');
+let helperCont = document.getElementById('helper_container');
 
 let total;
 
 // Buttons:
 let quote = document.getElementById('quote');
 
-
+// Helper Functions:
+let yearsFreeHelper = document.getElementById('years_free_help');
 
 
 let updateTotal = function() {
@@ -40,7 +47,10 @@ let updateTotal = function() {
 
   // price for year built
   if(isValidNumber(yearBuilt)){
-
+    //check to make sure year built is less than or equal to current year
+    if(parseInt(yearBuilt.value) <= currDate.getFullYear()){
+          total += (currDate.getFullYear() - parseInt(yearBuilt.value))*10;
+    }
   }
 
   // cover type value.
@@ -70,12 +80,13 @@ function isValidNumber(test){
   let result = false;
 
   if (testNumber >= 0) {
-    console.log("valid number?");
     result = true;
   }
   return result;
 }
 
+
+// returns the value of the radio thats checked.
 function valueOfRadio(radio){
   result = 0;
   for (var i = 0; i < radio.length; i++) {
@@ -103,6 +114,19 @@ function radioAddEvent(radio){
     radio[i].addEventListener('change', updateTotal);
   }
 }
+
+let helperOn = function(e){
+        helperCont.style.display = "block";
+        // used this to figure out what values for the img tag i could use for helper.
+        // console.log(e.target.alt);
+        helper.innerHTML = e.target.alt;
+}
+let helperOff = function(e){
+        helperCont.style.display = "none";
+}
+
+yearsFreeHelper.addEventListener('mouseover',helperOn);
+yearsFreeHelper.addEventListener('mouseout',helperOff);
 
 //Event Listeners for form.
 radioAddEvent(applicant);
