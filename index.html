@@ -10,8 +10,13 @@
       <h1 class="form-header">Home Insurance Quotation</h1>
       <h3>Please fill in the form to get a qoute:</h3>
     </div>
+    <div class="timer-container">
+      <div id="timer">
+        4:00
+      </div>
+    </div>
     <div class="form-container">
-      <form class="" action="#" method="">
+      <form id="insurance_form" class="" action="#" method="">
         <label for=""></label>
         <fieldset>
           <legend>Personal Information:</legend>
@@ -51,7 +56,7 @@
               <option value="20">Flat / Appartment</option>
             </select><br>
 
-            <label for="year_built">Year Built:</label><br>
+            <label for="year_built">Year Built:<img class="question" id="year_built_help" value="" src="question.png" alt="Year Property Was Constructed, Values Entered must be positive whole Number, cannot be future year."></label><br>
             <!-- 10 for every year old, need to get system date? -->
             <input id="year_built" type="text" value=""><br>
 
@@ -59,7 +64,7 @@
 
         <fieldset>
           <legend>Cover Details</legend>
-            <label for="cover_type">Cover Type:</label><br>
+            <label for="cover_type">Cover Type:<img class="question" id="cover_type_help" value="" src="question.png" alt="Cover Type, Please Select One, Rental for a rental property, Holiday for a holiday property, Owner if your own home."></label><br>
             <!-- Owner 50 , hol 60, rent 70 -->
             <select name="cover_type" id="cover_type">
               <option value="50">Owner Occupied</option>
@@ -68,7 +73,7 @@
             </select><br>
 
 
-            <label for="contents_cover">Conents Cover:</label><br>
+            <label for="contents_cover">Conents Cover:<img class="question" id="conent_cover_help" value="" src="question.png" alt="Contents Cover, Please Select One, Relates to the value of maximum cost of your homes contents you wish to cover (anything not building related)."></label><br>
             <!-- 10 for every 5000.  -->
             <select name="contents_cover" id="contents_cover">
               <option value="10">€5,000</option>
@@ -95,13 +100,13 @@
             </select><br>
 
 
-            <label for="years_claims_free">Years Claims Free: <img class="question" id="years_free_help" value="" src="question.png" alt="Values Entered must be positive whole Number"></label><br>
+            <label for="years_claims_free">Years Claims Free: <img class="question" id="years_free_help" value="" src="question.png" alt="Years Claims Free, Values Entered must be positive whole Number"></label><br>
             <!--  10 euro off for every year -->
             <input id="years_claims_free" type="text" value=""><br>
         </fieldset>
 
         <div class="buttons">
-          <input id="quote" type="button" name="" value="Get a Quote!">
+          <input id="quote" type="submit" name="" value="Get a Quote!">
           <input id="reset" type="reset" name="" value="reset">
         </div>
 
@@ -114,7 +119,7 @@
 
       <div id="helper_container">
         <div id="helper" class="helper">
-            Hello!!!!!! (Test)
+            Hello! this text is for testing.
         </div>
       </div>
 

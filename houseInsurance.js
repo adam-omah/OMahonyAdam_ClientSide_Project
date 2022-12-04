@@ -1,5 +1,6 @@
 
 //Declaring Components in my form:
+let form = document.getElementById('insurance_form');
 let name = document.getElementById('name');
 let email = document.getElementById('email');
 let applicant = document.getElementsByName('applicant');
@@ -18,14 +19,19 @@ let currDate = new Date(Date.now());
 
 let helper = document.getElementById('helper');
 let helperCont = document.getElementById('helper_container');
+let timer = document.getElementById('timer');
 
 let total;
+let count = 240;
 
 // Buttons:
 let quote = document.getElementById('quote');
 
 // Helper Functions:
 let yearsFreeHelper = document.getElementById('years_free_help');
+let yearBuiltHelper = document.getElementById('year_built_help');
+let coverTypeHelper = document.getElementById('cover_type_help');
+let contentsHelper = document.getElementById('conent_cover_help');
 
 
 let updateTotal = function() {
@@ -37,6 +43,7 @@ let updateTotal = function() {
   // price per Room
   if(isValidNumber(bedrooms)){
     total += (parseInt(bedrooms.value) * 10);
+    bedrooms.style.border = "1px solid #555";
   }
 
   //Area type addition.
@@ -50,6 +57,8 @@ let updateTotal = function() {
     //check to make sure year built is less than or equal to current year
     if(parseInt(yearBuilt.value) <= currDate.getFullYear()){
           total += (currDate.getFullYear() - parseInt(yearBuilt.value))*10;
+          // reset valid on change:
+          yearBuilt.style.border = "1px solid #555";
     }
   }
 
@@ -64,6 +73,7 @@ let updateTotal = function() {
   // reduction for claimsFree;
   if (isValidNumber(claimsFree)) {
     total -= (parseInt(claimsFree.value) * 10);
+    claimsFree.style.border = "1px solid #555";
   }
 
   if(total >= 0){
@@ -78,8 +88,8 @@ let updateTotal = function() {
 function isValidNumber(test){
   let testNumber = parseInt(test.value);
   let result = false;
-
-  if (testNumber >= 0) {
+  // numbers are tested to be positive whole numbers.
+  if (testNumber >= 0 && testNumber != null) {
     result = true;
   }
   return result;
@@ -125,8 +135,37 @@ let helperOff = function(e){
         helperCont.style.display = "none";
 }
 
+// count down timer:
+window.onload = function(){
+  let countDown = setInterval('startCountdown()',1000);
+}
+function startCountdown() {
+        if (count > 0) {
+          count--;
+          if (count >180) {
+            timer.innerHTML = "3:" + (count -180);
+          }else if (count >120) {
+            timer.innerHTML = "2:" + (count -120);
+          }else if (count >60) {
+            timer.innerHTML = "1:" + (count -60);
+          }else{
+            timer.innerHTML = "0:" + (count);
+          }
+        }else {
+          window.location.assign("timed_out.html");
+        }
+}
+
+
+// helper function listeners:
 yearsFreeHelper.addEventListener('mouseover',helperOn);
 yearsFreeHelper.addEventListener('mouseout',helperOff);
+yearBuiltHelper.addEventListener('mouseover',helperOn);
+yearBuiltHelper.addEventListener('mouseout',helperOff);
+contentsHelper.addEventListener('mouseover',helperOn);
+contentsHelper.addEventListener('mouseout',helperOff);
+coverTypeHelper.addEventListener('mouseover',helperOn);
+coverTypeHelper.addEventListener('mouseout',helperOff);
 
 //Event Listeners for form.
 radioAddEvent(applicant);
@@ -138,3 +177,52 @@ coverType.addEventListener('change', updateTotal);
 contentCover.addEventListener('change', updateTotal);
 buildCover.addEventListener('change', updateTotal);
 claimsFree.addEventListener('input', updateTotal);
+
+// interupts submit for sending values to sumary page.
+form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // validate form will highlight fields not correct.
+        if(validateForm()){
+
+          window.alert("Valid form entry! Go to summary page");
+        }
+      });
+
+// validate Form only using simple validation here. (numbers already validated from above.)
+function validateForm(){
+  let result = true;
+
+  if (name.value == "" || name.value == null) {
+    result = false;
+    name.style.border ="4px solid #b50303";
+  }else{
+    name.style.border = "1px solid #555";
+  }
+  if (email.value == "" || email.value == null) {
+    result = false;
+    email.style.border ="4px solid #b50303";
+  }else{
+    email.style.border = "1px solid #555";
+  }
+  if(!isValidNumber(bedrooms) || bedrooms.value == ""){
+    result = false;
+    bedrooms.style.border ="4px solid #b50303";
+  }else{
+    bedrooms.style.border = "1px solid #555";
+  }
+  if(!isValidNumber(yearBuilt) || yearBuilt.value == ""){
+    result = false;
+    yearBuilt.style.border ="4px solid #b50303";
+  }else{
+    yearBuilt.style.border = "1px solid #555";
+  }
+
+  if(!isValidNumber(claimsFree) || claimsFree.value == ""){
+    result = false;
+    claimsFree.style.border ="4px solid #b50303";
+  }else{
+    claimsFree.style.border = "1px solid #555";
+  }
+
+  return result;
+}

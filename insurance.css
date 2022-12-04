@@ -10,6 +10,10 @@ body{
     height: 2rem;
 }
 
+.form-container {
+    margin-bottom: 5rem;
+}
+
 #helper_container {
     border: 0.5rem solid #b50303;
     border-radius: 1rem;
@@ -26,4 +30,21 @@ body{
 .totals {
     position: fixed;
     bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    width: 98vw;
+  }
+  
+.timer-container {
+    position: fixed;
+    top: 5rem;
+    right: 5rem;
+    width: 5rem;
+    text-align: center;
+    border: 0.2rem solid #b50303;
+    border-radius: 0.5rem;
+}
+
+input {
+  border: 1px solid #555;
 }
