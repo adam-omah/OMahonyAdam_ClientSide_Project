@@ -13,6 +13,7 @@ let contentCover = document.getElementById('contents_cover');
 let buildCover = document.getElementById('building_cover');
 let claimsFree = document.getElementById('years_claims_free');
 let runningTotal = document.getElementById('running_total');
+let reset = document.getElementById('reset');
 // this was fund on the mozila definition for Date variables.
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 let currDate = new Date(Date.now());
@@ -32,6 +33,12 @@ let yearsFreeHelper = document.getElementById('years_free_help');
 let yearBuiltHelper = document.getElementById('year_built_help');
 let coverTypeHelper = document.getElementById('cover_type_help');
 let contentsHelper = document.getElementById('conent_cover_help');
+
+// setting form values to none.
+propType.selectedIndex = -1;
+coverType.selectedIndex = -1;
+contentCover.selectedIndex = -1;
+buildCover.selectedIndex = -1;
 
 
 let updateTotal = function() {
@@ -85,6 +92,7 @@ let updateTotal = function() {
 
 }
 
+// checks for positive whole number.
 function isValidNumber(test){
   let testNumber = parseInt(test.value);
   let result = false;
@@ -113,6 +121,8 @@ function listValueInt(list){
     // used this as i had list.selectedIndex.value in previously and had to test.
     //console.log("selected a diff Property" + list[list.selectedIndex].value);
     return parseInt(list[list.selectedIndex].value);
+    // this resets the validation that was added. if border was put to red.
+    list.style.border = "1px solid #555";
   }else {
     return 0;
   }
@@ -177,15 +187,56 @@ coverType.addEventListener('change', updateTotal);
 contentCover.addEventListener('change', updateTotal);
 buildCover.addEventListener('change', updateTotal);
 claimsFree.addEventListener('input', updateTotal);
+// added this as I wanted the forms to have -1 value for not chosen.
+let resetSelected = function() {
 
+}
+
+// interupts the reset button as I wanted selected index to be -1
+reset.addEventListener('click',function (e) {
+        e.preventDefault();
+        // setting form values to none.
+        propType.selectedIndex = -1;
+        coverType.selectedIndex = -1;
+        contentCover.selectedIndex = -1;
+        buildCover.selectedIndex = -1;
+        name.value = "";
+        email.value = "";
+        bedrooms.value = "";
+        yearBuilt.value = "";
+        claimsFree.value = "";
+        applicant[0].checked = true;
+        area[0].checked = true;
+      });
 // interupts submit for sending values to sumary page.
 form.addEventListener('submit', function (e) {
         e.preventDefault();
         // validate form will highlight fields not correct.
         if(validateForm()){
+          if(localStorage){
+          let quoteArray = [];
+
+          quoteArray.push(name.value);
+          quoteArray.push(email.value);
+          quoteArray.push(valueOfRadio(applicant));
+          quoteArray.push(parseInt(bedrooms.value));
+          quoteArray.push(valueOfRadio(area));
+          quoteArray.push(propType[propType.selectedIndex].text);
+          quoteArray.push(parseInt(yearBuilt.value));
+          quoteArray.push(coverType[coverType.selectedIndex].text);
+          quoteArray.push(contentCover[contentCover.selectedIndex].text);
+          quoteArray.push(buildCover[buildCover.selectedIndex].text);
+          quoteArray.push(parseInt(claimsFree.value));
+          quoteArray.push(parseInt(runningTotal.value));
+
+
+          localStorage.setItem('your_quote', JSON.stringify(quoteArray));
 
           window.alert("Valid form entry! Go to summary page");
+        }else{
+          window.alert("Sorry, your browser do not support local storage.");
         }
+      }
       });
 
 // validate Form only using simple validation here. (numbers already validated from above.)
@@ -210,18 +261,48 @@ function validateForm(){
   }else{
     bedrooms.style.border = "1px solid #555";
   }
-  if(!isValidNumber(yearBuilt) || yearBuilt.value == ""){
+  if(!isValidNumber(yearBuilt) || yearBuilt.value == "" || parseInt(yearBuilt.value) > currDate.getFullYear()){
     result = false;
     yearBuilt.style.border ="4px solid #b50303";
   }else{
     yearBuilt.style.border = "1px solid #555";
   }
 
-  if(!isValidNumber(claimsFree) || claimsFree.value == ""){
+  if(!isValidNumber(claimsFree) || claimsFree.value == "")
+  {
     result = false;
     claimsFree.style.border ="4px solid #b50303";
   }else{
     claimsFree.style.border = "1px solid #555";
+    console.log(currDate.getFullYear() - parseInt(yearBuilt.value));
+  }
+
+  if(propType.selectedIndex == -1){
+    result = false;
+    propType.style.border ="4px solid #b50303";
+  }else {
+    propType.style.border = "1px solid #555";
+  }
+
+  if(coverType.selectedIndex == -1){
+    result = false;
+    coverType.style.border ="4px solid #b50303";
+  }else {
+    coverType.style.border = "1px solid #555";
+  }
+
+  if(contentCover.selectedIndex == -1){
+    result = false;
+    contentCover.style.border ="4px solid #b50303";
+  }else {
+    contentCover.style.border = "1px solid #555";
+  }
+
+  if(buildCover.selectedIndex == -1){
+    result = false;
+    buildCover.style.border ="4px solid #b50303";
+  }else {
+    buildCover.style.border = "1px solid #555";
   }
 
   return result;
