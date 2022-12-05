@@ -232,7 +232,7 @@ form.addEventListener('submit', function (e) {
 
           localStorage.setItem('your_quote', JSON.stringify(quoteArray));
 
-          window.alert("Valid form entry! Go to summary page");
+          window.location.assign("insurance_summary.html");
         }else{
           window.alert("Sorry, your browser do not support local storage.");
         }

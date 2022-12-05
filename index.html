@@ -3,14 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>Home Insurance Quotation</title>
-    <link rel="stylesheet" href="insurance.css">
+    <link rel="stylesheet" href="Styles/insurance.css">
   </head>
   <body>
-    <div class="">
-      <h1 class="form-header">Home Insurance Quotation</h1>
-      <h3>Please fill in the form to get a qoute:</h3>
+    <div class="header">
+      <h1>Home Insurance Quotation</h1>
+      <h3 class="sub-header">Please fill in the form to get a qoute:</h3>
     </div>
     <div class="timer-container">
+      <h5>Time Remaining:</h5>
       <div id="timer">
         4:00
       </div>
@@ -106,12 +107,12 @@
         </fieldset>
 
         <div class="buttons">
-          <input id="quote" type="submit" name="" value="Get a Quote!">
           <input id="reset" type="reset" name="" value="reset">
+          <input id="quote" type="submit" name="" value="Get a Quote!">
         </div>
 
         <div class="totals">
-          <label for="running_total">Running Total:</label><br>
+          <label for="running_total">Running Total: </label><br>
           <input id="running_total" type="text" value=""><br>
         </div>
 
@@ -124,7 +125,7 @@
       </div>
 
 
-      <script src="houseInsurance.js"></script>
+      <script src="JS/houseInsurance.js"></script>
     </div>
   </body>
 </html>
