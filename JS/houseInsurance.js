@@ -243,66 +243,85 @@ form.addEventListener('submit', function (e) {
 function validateForm(){
   let result = true;
 
-  if (name.value == "" || name.value == null) {
-    result = false;
-    name.style.border ="4px solid #b50303";
-  }else{
-    name.style.border = "1px solid #555";
-  }
-  if (email.value == "" || email.value == null) {
-    result = false;
-    email.style.border ="4px solid #b50303";
-  }else{
-    email.style.border = "1px solid #555";
-  }
-  if(!isValidNumber(bedrooms) || bedrooms.value == ""){
-    result = false;
-    bedrooms.style.border ="4px solid #b50303";
-  }else{
-    bedrooms.style.border = "1px solid #555";
-  }
-  if(!isValidNumber(yearBuilt) || yearBuilt.value == "" || parseInt(yearBuilt.value) > currDate.getFullYear()){
-    result = false;
-    yearBuilt.style.border ="4px solid #b50303";
-  }else{
-    yearBuilt.style.border = "1px solid #555";
-  }
+  //options are in reverse so that focus goes to first wrong instance.
 
+  //claims free validate
   if(!isValidNumber(claimsFree) || claimsFree.value == "")
   {
     result = false;
     claimsFree.style.border ="4px solid #b50303";
+    claimsFree.focus();
   }else{
     claimsFree.style.border = "1px solid #555";
-    console.log(currDate.getFullYear() - parseInt(yearBuilt.value));
   }
-
-  if(propType.selectedIndex == -1){
-    result = false;
-    propType.style.border ="4px solid #b50303";
-  }else {
-    propType.style.border = "1px solid #555";
-  }
-
-  if(coverType.selectedIndex == -1){
-    result = false;
-    coverType.style.border ="4px solid #b50303";
-  }else {
-    coverType.style.border = "1px solid #555";
-  }
-
-  if(contentCover.selectedIndex == -1){
-    result = false;
-    contentCover.style.border ="4px solid #b50303";
-  }else {
-    contentCover.style.border = "1px solid #555";
-  }
-
+  // Build Cover
   if(buildCover.selectedIndex == -1){
     result = false;
     buildCover.style.border ="4px solid #b50303";
+    buildCover.focus();
   }else {
     buildCover.style.border = "1px solid #555";
+  }
+  // Contents Cover
+  if(contentCover.selectedIndex == -1){
+    result = false;
+    contentCover.style.border ="4px solid #b50303";
+    contentCover.focus();
+  }else {
+    contentCover.style.border = "1px solid #555";
+  }
+  //cover Type
+  if(coverType.selectedIndex == -1){
+    result = false;
+    coverType.style.border ="4px solid #b50303";
+    coverType.focus();
+  }else {
+    coverType.style.border = "1px solid #555";
+  }
+  // Year Built
+  if(!isValidNumber(yearBuilt) || yearBuilt.value == "" || parseInt(yearBuilt.value) > currDate.getFullYear()){
+    result = false;
+    yearBuilt.style.border ="4px solid #b50303";
+    yearBuilt.focus();
+  }else{
+    yearBuilt.style.border = "1px solid #555";
+  }
+  // Property Type.
+  if(propType.selectedIndex == -1){
+    result = false;
+    propType.style.border ="4px solid #b50303";
+    propType.focus();
+  }else {
+    propType.style.border = "1px solid #555";
+  }
+  //bedrooms
+  if(!isValidNumber(bedrooms) || bedrooms.value == ""){
+    result = false;
+    bedrooms.style.border ="4px solid #b50303";
+    bedrooms.focus();
+  }else{
+    bedrooms.style.border = "1px solid #555";
+  }
+
+  // Email Email Regex was taken from
+  // https://www.simplilearn.com/tutorials/javascript-tutorial/email-validation-in-javascript
+  // however to match my validation code i am testing !valid.
+  let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (!email.value.match(validRegex) || email.value == null) {
+    result = false;
+    email.style.border ="4px solid #b50303";
+    email.focus();
+  }else{
+    email.style.border = "1px solid #555";
+  }
+  // Name must be string and not a number.
+  if (name.value == "" || name.value == null || !isNaN(parseInt(name.value))) {
+    result = false;
+    name.style.border ="4px solid #b50303";
+    name.focus();
+  }else{
+    name.style.border = "1px solid #555";
+    console.log(parseInt(name.value));
   }
 
   return result;

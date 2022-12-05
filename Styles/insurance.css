@@ -103,6 +103,8 @@ input[type="text"] {
     padding: 0.5rem 2rem;
 }
 
+
+
 input#running_total {
     margin-bottom: 0px;
 }
@@ -112,6 +114,10 @@ input#reset, input#quote {
     border-radius: 1rem;
     padding: 0.5rem;
     background-color: #fff;
+}
+
+select:focus, input:focus, input#reset:focus, input#quote:focus {
+    background-color: #d8ecff;
 }
 
 input {
