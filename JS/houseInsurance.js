@@ -40,7 +40,7 @@ coverType.selectedIndex = -1;
 contentCover.selectedIndex = -1;
 buildCover.selectedIndex = -1;
 
-
+// 
 let updateTotal = function() {
   total = 0;
 
@@ -88,8 +88,6 @@ let updateTotal = function() {
   }else{
     runningTotal.value = 0;
   }
-
-
 }
 
 // checks for positive whole number.
@@ -166,33 +164,7 @@ function startCountdown() {
         }
 }
 
-
-// helper function listeners:
-yearsFreeHelper.addEventListener('mouseover',helperOn);
-yearsFreeHelper.addEventListener('mouseout',helperOff);
-yearBuiltHelper.addEventListener('mouseover',helperOn);
-yearBuiltHelper.addEventListener('mouseout',helperOff);
-contentsHelper.addEventListener('mouseover',helperOn);
-contentsHelper.addEventListener('mouseout',helperOff);
-coverTypeHelper.addEventListener('mouseover',helperOn);
-coverTypeHelper.addEventListener('mouseout',helperOff);
-
-//Event Listeners for form.
-radioAddEvent(applicant);
-bedrooms.addEventListener('input', updateTotal);
-radioAddEvent(area);
-propType.addEventListener('change', updateTotal);
-yearBuilt.addEventListener('input', updateTotal);
-coverType.addEventListener('change', updateTotal);
-contentCover.addEventListener('change', updateTotal);
-buildCover.addEventListener('change', updateTotal);
-claimsFree.addEventListener('input', updateTotal);
-// added this as I wanted the forms to have -1 value for not chosen.
-let resetSelected = function() {
-
-}
-
-// interupts the reset button as I wanted selected index to be -1
+// interupts the reset button, added this as I wanted the forms to have -1 value for not chosen.
 reset.addEventListener('click',function (e) {
         e.preventDefault();
         // setting form values to none.
@@ -208,6 +180,7 @@ reset.addEventListener('click',function (e) {
         applicant[0].checked = true;
         area[0].checked = true;
       });
+
 // interupts submit for sending values to sumary page.
 form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -326,3 +299,24 @@ function validateForm(){
 
   return result;
 }
+
+// helper function listeners:
+yearsFreeHelper.addEventListener('mouseover',helperOn);
+yearsFreeHelper.addEventListener('mouseout',helperOff);
+yearBuiltHelper.addEventListener('mouseover',helperOn);
+yearBuiltHelper.addEventListener('mouseout',helperOff);
+contentsHelper.addEventListener('mouseover',helperOn);
+contentsHelper.addEventListener('mouseout',helperOff);
+coverTypeHelper.addEventListener('mouseover',helperOn);
+coverTypeHelper.addEventListener('mouseout',helperOff);
+
+//Event Listeners for form.
+radioAddEvent(applicant);
+bedrooms.addEventListener('input', updateTotal);
+radioAddEvent(area);
+propType.addEventListener('change', updateTotal);
+yearBuilt.addEventListener('input', updateTotal);
+coverType.addEventListener('change', updateTotal);
+contentCover.addEventListener('change', updateTotal);
+buildCover.addEventListener('change', updateTotal);
+claimsFree.addEventListener('input', updateTotal);
